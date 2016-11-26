@@ -4,6 +4,15 @@
 <p>価格: <%= @book.price %></p>
 <p>出版社: <%= @book.publish %></p>
 <p>刊行日: <%= @book.publish_date %></p>
+
+<h3>レビュー一覧</h3>
+<% @book.reviews.each do |review| %>
+    <li><%= review.body %></li>
+<% end %>
+
+<h3>投稿</h3>
+<%= render partial: 'new_review', locals: { review: Review.new(book_id: @book.id) } %>
+
 <hr>
 <%= link_to '編集', edit_book_path(@book) %>
 <%= link_to '削除', book_path(@book), method: :delete %>
